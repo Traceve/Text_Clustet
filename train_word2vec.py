@@ -22,9 +22,7 @@ class Get_Sentences(object):
                 for line in f:
                     print(str(index) + ' ' + line[0:20])
                     index += 1
-                    doc = line.split('\t')[1]
-                    for sentence in doc.split("。"):
-                        yield [word for word in (jieba.lcut(re.sub('[\d ×()]', '', sentence))) if word not in stoplist]
+                    yield [word for word in (jieba.lcut(re.sub('[\d ×()]', '', line))) if word not in stoplist]
 
 
 def train_word2vec(train_dir,vector_word_filename):
@@ -36,4 +34,4 @@ def train_word2vec(train_dir,vector_word_filename):
 
 
 if __name__ == '__main__':
-    train_word2vec("/mnt/disk0/workspace/Text_Clustet/data/train.txt","/mnt/disk0/workspace/Text_Clustet/data/vector_word.txt")
+    train_word2vec("/mnt/disk0/workspace/Text_Clustet/data/contents1.txt","/mnt/disk0/workspace/Text_Clustet/data/vector_word.txt")
