@@ -16,9 +16,9 @@ def read_file(filename):
     with open_file(filename) as f:
         for line in f:
             try:
-                label, content = line.strip().split('\t')
-                if content:
-                    contents.append(jieba.lcut(content))
+                label, content1,content2 = line.strip().split('\t')
+                if content1 and content2:
+                    contents.append(jieba.lcut(content1,content2))
                     labels.append(label)
             except:
                 pass
@@ -46,10 +46,10 @@ def read_vocab(vocab_dir):
     word_to_id = dict(zip(words, range(len(words))))
     return words, word_to_id
 
-f = open_file("E:/Machine Learning/results.txt", "r")
-contents, labels = read_file("E:/Machine Learning/results.txt")
-build_vocab("E:/Machine Learning/results.txt", "E:/Machine Learning/vocab.txt", 50000)
-words, word_to_id = read_vocab("E:/Machine Learning/vocab.txt")
+#f = open_file("/mnt/disk0/workspace/Text_Clustet/data/train.txt", "r")
+contents, labels = read_file("/mnt/disk0/workspace/Text_Clustet/data/train.txt")
+build_vocab("/mnt/disk0/workspace/Text_Clustet/data/train.txt", "/mnt/disk0/workspace/Text_Clustet/data/vocab.txt", 50000)
+#words, word_to_id = read_vocab("E:/Machine Learning/vocab.txt")
 '''
 vocab_size = len(words)
 vocab = word_to_id
