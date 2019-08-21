@@ -10,7 +10,7 @@ from gensim.models import Word2Vec
 
 import jieba
 
-stoplist = {}.fromkeys([line.strip() for line in open("E:/Machine Learning/stopwords.txt","rb")])
+stoplist = {}.fromkeys([line.strip() for line in open("/mnt/disk0/workspace/Text_Clustet/data/stopwords.txt","rb")])
 
 
 class Get_Sentences(object):
@@ -39,4 +39,4 @@ def train_word2vec(train_dir,vector_word_filename):
 
 
 if __name__ == '__main__':
-    train_word2vec("E:/Machine Learning/results.txt","E:/Machine Learning/vector_word.txt")
+    train_word2vec("/mnt/disk0/workspace/Text_Clustet/data/train.txt","/mnt/disk0/workspace/Text_Clustet/data/vector_word.txt")
