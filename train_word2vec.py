@@ -11,10 +11,7 @@ from gensim.models import Word2Vec
 import jieba
 
 stoplist = {}.fromkeys([line.strip() for line in open("/mnt/disk0/workspace/Text_Clustet/data/stopwords.txt","rb")])
-
-
 class Get_Sentences(object):
-
     def __init__(self, file_names):
         self.filenames = file_names
 

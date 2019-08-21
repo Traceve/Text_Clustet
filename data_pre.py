@@ -50,22 +50,3 @@ def read_vocab(vocab_dir):
 contents, labels = read_file("/mnt/disk0/workspace/Text_Clustet/data/train.txt")
 build_vocab("/mnt/disk0/workspace/Text_Clustet/data/train.txt", "/mnt/disk0/workspace/Text_Clustet/data/vocab.txt", 50000)
 #words, word_to_id = read_vocab("E:/Machine Learning/vocab.txt")
-'''
-vocab_size = len(words)
-vocab = word_to_id
-
-file_r = codecs.open("E:/Machine Learning/vector_word.txt", 'r', encoding='utf-8')
-line = file_r.readline()
-voc_size, vec_dim = map(int, line.split(' '))
-embeddings = np.zeros([len(vocab), vec_dim])
-line = file_r.readline()
-while line:
-    items = line.split(' ')
-    word = items[0]
-    vec = np.asarray(items[1:], dtype='float32')
-    if word in vocab:
-        word_idx = vocab[word]
-        embeddings[word_idx] = np.asarray(vec)
-    line = file_r.readline()
-np.savez_compressed(config.vector_word_npz, embeddings=embeddings)
-'''
