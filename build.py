@@ -1,32 +1,51 @@
-import os
-import time
-from datetime import timedelta
+import re
+import codecs
+from data_pre import *
+words,word_to_id = read_vocab("/mnt/disk0/workspace/Text_Clustet/data/vocab.txt")
+a = process_file("/mnt/disk0/workspace/Text_Clustet/data/train1.txt",word_to_id, max_length=200)
+print(a)
+c=[]
+'''
+embeddings1 = np.zeros([len(a),len(a[0])*200])
+#def em(a,word_to_id):
+embeddings= cc()
+b=np.zeros([1,len(a[0])*200])
+print(len(b))
+print(b)
+c=[]
+for i in range(len(a)):
+    j = 0
+    while j < 200 :
+        print("qqqqqqqqqqqqqqqqqqq")
+        if a[i][j] in word_to_id.values():
+            #print(embeddings[a[i][j]])
+            b += embeddings[a[i][j]]
+            print(b)
+        #j+=1
+    #print("fffffffffffffffffffff")
+    #c.append(b)
+    #return c
+        #print(c)
+    #f1 = open('/mnt/disk0/workspace/Text_Clustet/data/b.txt', 'w',encoding='utf-8')
+    #f1.write('\n'+ c)
+    #f1.close()
+#d = em(a,word_to_id)
+#print("efwewewe")
+#np.savez_compressed("/mnt/disk0/workspace/Text_Clustet/data/b.txt", d)
+'''
 
-import numpy as np
-import tensorflow as tf
-import tensorflow.contrib.keras as kr
-from sklearn import metrics
 
-from train_word2vec import train_word2vec
 
-def export_word2vec_vectors(config):
-    """
-    save vocab_vector to numpy file
-    :param config: config
-    :return:
-    """
-    vocab = config.word_to_id
-    file_r = codecs.open(config.vector_word_filename, 'r', encoding='utf-8')
-    line = file_r.readline()
-    voc_size, vec_dim = map(int, line.split(' '))
-    embeddings = np.zeros([len(vocab), vec_dim])
-    line = file_r.readline()
-    while line:
-        items = line.split(' ')
-        word = items[0]
-        vec = np.asarray(items[1:], dtype='float32')
-        if word in vocab:
-            word_idx = vocab[word]
-            embeddings[word_idx] = np.asarray(vec)
-        line = file_r.readline()
-    np.savez_compressed(config.vector_word_npz, embeddings=embeddings)
+#print(len(a))
+#np.savetxt("/mnt/disk0/workspace/Text_Clustet/data/a.txt", a)
+
+
+'''
+    for w in line:
+        if 'x' != w.flag:
+            line0.append(w.word)
+    train.append(' '.join(line0))
+f1 = open('/mnt/disk0/workspace/Text_Clustet/data/vector_word100', 'w',encoding='utf-8')
+f1.write('\n'.join(train))
+f1.close()
+'''

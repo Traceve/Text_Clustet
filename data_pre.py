@@ -1,15 +1,11 @@
 from collections import Counter
-
 import jieba
-import re
-from gensim.models import Word2Vec
-import numpy as np
-import codecs
 import tensorflow.contrib.keras as kr
-import sys
-import jieba.posseg as pseg
-
 def open_file(filename, mode='r'):
+    """
+    常用文件操作，可在python2和python3间切换.
+    mode: 'r' or 'w' for read or write
+    """
     return open(filename, mode, encoding='utf-8', errors='ignore')#以UTF-8的格式代开文件并返回
 def read_file(filename):
     """读取文件数据"""
@@ -42,11 +38,12 @@ def read_vocab(vocab_dir):
         words = [_.strip() for _ in fp.readlines()]
     word_to_id = dict(zip(words, range(len(words))))
     return words, word_to_id
-def process_file(filename, word_to_id, cat_to_id, max_length=200):
+def process_file(filename, word_to_id, max_length=200):
     """将文件转换为id表示"""
     contents, labels = read_file(filename)
-    data_id, label_id = [], []
+    data_id = []
     for i in range(len(contents)):
         data_id.append([word_to_id[x] for x in contents[i] if x in word_to_id])
-        label_id.append(cat_to_id[labels[i]])
+    x_pad = kr.preprocessing.sequence.pad_sequences(data_id, max_length,dtype='int32')
+    return x_pad
 

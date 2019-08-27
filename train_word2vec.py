@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import logging
-import os
 import re
 import time
 
@@ -27,9 +26,13 @@ class Get_Sentences(object):
 
 def train_word2vec(train_dir,vector_word_filename):
     print('Train Word2Vec...')
+    t1 = time.time()
+    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     sentences = Get_Sentences([train_dir])
     model = Word2Vec(sentences, sg=1, hs=1, min_count=1, window=3, size=200, workers=4, iter=2)
     model.wv.save_word2vec_format(vector_word_filename, binary=False)
+    print('-------------------------------------------')
+    print("Training word2vec model cost %.3f seconds...\n" % (time.time() - t1))
 
 
 

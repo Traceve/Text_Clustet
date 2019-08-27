@@ -1,8 +1,16 @@
+import codecs
+
 from data_pre import *
+from config import TCNNConfig
+import os
 #contens,label = read_file("/mnt/disk0/workspace/Text_Clustet/data/train.txt")
-#build_vocab("/mnt/disk0/workspace/Text_Clustet/data/train.txt", "/mnt/disk0/workspace/Text_Clustet/data/vocab.txt", 120000)
 import sys
 import jieba.posseg as pseg
+config = TCNNConfig("/mnt/disk0/workspace/Text_Clustet/data")
+build_vocab(config.train_dir, config.vocab_dir, 120000)
+words, word_to_id = read_vocab(config.vocab_dir)
+
+'''
 train_contents = open("/mnt/disk0/workspace/Text_Clustet/data/contents1.txt",'r',encoding="utf-8")
 train_lines = train_contents.read().split('\n')
 train = []
@@ -20,3 +28,5 @@ for line in train_lines:
 f1 = open('/mnt/disk0/workspace/Text_Clustet/data/vector_word100', 'w',encoding='utf-8')
 f1.write('\n'.join(train))
 f1.close()
+'''
+x_train = process_file(config.train_dir, config.word_to_id, 200)
